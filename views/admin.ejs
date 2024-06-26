@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Job Listing</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input, select, textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    background: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.job-listing {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.job-listing img {
+    max-width: 100%;
+    height: auto;
+}
+
+.job-listing button {
+    background: #dc3545;
+    border: none;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.job-listing button:hover {
+    background: #c82333;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Job Listing</h1>
+        <form id="jobForm" action="/add-job" method="POST" enctype="multipart/form-data">
+            <label for="jobTitle">Job Title</label>
+            <input type="text" id="jobTitle" name="jobTitle" required>
+            
+            <label for="jobCategory">Category</label>
+            <select id="jobCategory" name="jobCategory" required>
+                <option value="admin">Administration</option>
+                <option value="hr">Human Resources</option>
+                <option value="it">Information Technology</option>
+                <option value="sales">Sales & Marketing</option>
+                <!-- Add more categories as needed -->
+            </select>
+            
+            <label for="jobDescription">Job Description</label>
+            <textarea id="jobDescription" name="jobDescription" required></textarea>
+            
+            <label for="jobRequirements">Requirements</label>
+            <textarea id="jobRequirements" name="jobRequirements" required></textarea>
+            
+            <label for="jobLocation">Location</label>
+            <input type="text" id="jobLocation" name="jobLocation" required>
+            
+            <label for="jobSalary">Salary</label>
+            <input type="number" id="jobSalary" name="jobSalary" required>
+
+            <label for="jobImage">Job Image</label>
+            <input type="file" id="jobImage" name="jobImage" accept="image/*" required>
+            
+            <label for="jobPDF">Job PDF (Optional)</label>
+            <input type="file" id="jobPDF" name="jobPDF" accept="application/pdf">
+            
+            <button type="submit">Add Job</button>
+        </form>
+
+        <h2>Existing Job Listings</h2>
+        <div id="adminJobsContainer"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/get-jobs')
+                .then(response => response.json())
+                .then(data => {
+                    const adminJobsContainer = document.getElementById('adminJobsContainer');
+                    data.forEach(job => {
+                        const jobDiv = document.createElement('div');
+                        jobDiv.classList.add('job-listing');
+                        jobDiv.innerHTML = `
+                            <h3>${job.title}</h3>
+                            <img src="${job.image}" alt="${job.title}" style="width:100px;height:auto;">
+                            <p>${job.description}</p>
+                            <p>Location: ${job.location}</p>
+                            <p>Salary: $${job.salary}</p>
+                            ${job.pdf ? `<a href="${job.pdf}" target="_blank">View PDF</a>` : ''}
+                            <button onclick="deleteJob(${job.id})">Delete</button>
+                        `;
+                        adminJobsContainer.appendChild(jobDiv);
+                    });
+                });
+        });
+
+        function deleteJob(id) {
+            fetch(`/delete-job/${id}`, { method: 'DELETE' })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                    location.reload();
+                });
+        }
+    </script>
+</body>
+</html>

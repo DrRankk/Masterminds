@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input, select, textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    background: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.job-listing {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.job-listing img {
+    max-width: 100%;
+    height: auto;
+}
+
+.job-listing button {
+    background: #dc3545;
+    border: none;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.job-listing button:hover {
+    background: #c82333;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Job Listings</h1>
+        <div id="jobsContainer"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/get-jobs')
+                .then(response => response.json())
+                .then(data => {
+                    const jobsContainer = document.getElementById('jobsContainer');
+                    data.forEach(job => {
+                        const jobDiv = document.createElement('div');
+                        jobDiv.classList.add('job-listing');
+                        jobDiv.innerHTML = `
+                            <h3>${job.title}</h3>
+                            <img src="${job.image}" alt="${job.title}" style="width:500px;height:500px;">
+                            <p>${job.description}</p>
+                            <p>Location: ${job.location}</p>
+                            <p>Salary: $${job.salary}</p>
+                            ${job.pdf ? `<a href="${job.pdf}" target="_blank">View PDF</a>` : ''}
+                        `;
+                        jobsContainer.appendChild(jobDiv);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
