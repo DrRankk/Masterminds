@@ -40,8 +40,8 @@ app.use(express.static('node_modules'));
 app.get('/', (req, res) => {
     res.render("index.ejs");
 });
-app.get('/about', (req, res) => {
-    res.render("about.ejs");
+app.get('/aboutus', (req, res) => {
+    res.render("aboutus.ejs");
 });
 app.get('/contact', (req, res) => {
     res.render("contact.ejs");

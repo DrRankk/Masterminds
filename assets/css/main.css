@@ -177,7 +177,7 @@ h6 {
 
 /* Index Page Header */
 .index-page .header {
-  --background-color: rgb(32, 93, 165);
+  --background-color: rgba(32, 93, 165,);
 }
 
 /* Index Page Header on Scroll */
@@ -1873,4 +1873,13 @@ section,
 }
 .img-fluid{
   max-width: 100%;
+}
+.more-link {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+.more-link i {
+  font-size: 14px;
+  vertical-align: middle;
 }
