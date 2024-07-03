@@ -1,35 +1,13 @@
 [
   {
-    "id": 1718421106771,
-    "title": "cleaner",
-    "category": "it",
-    "description": "tfghjk",
-    "requirements": "hhjhjkj",
-    "location": "Qatar",
-    "salary": "23333",
-    "image": "uploads\\cleaning 1.png",
-    "pdf": null
-  },
-  {
-    "id": 1718491543111,
-    "title": "cleaner",
-    "category": "hr",
-    "description": "ghjjkkjlk",
-    "requirements": "vghhjhkjkj",
-    "location": "hjgjhgjhj",
-    "salary": "23456",
-    "image": "uploads\\cleaning 1.png",
-    "pdf": null
-  },
-  {
-    "id": 1718572691637,
-    "title": "cleaner",
+    "id": 1720001334639,
+    "title": "Security Guards",
     "category": "admin",
-    "description": "hkjkjk",
-    "requirements": "hjhkjkjjk",
+    "description": "Male Security Guards",
+    "requirements": "- Age 22-36yrs\r\n-Height 5'8\" +\r\n-Valid Passport, PCC, Covid Cert\r\n-Original KCSE Cert\r\n-Proof of Security Experience (2yrs min)\r\n-Medically, Mentally, Physically fit\r\n-Good English",
     "location": "Qatar",
-    "salary": "12345",
-    "image": "uploads\\visaapplication 2.jpg",
-    "pdf": "uploads\\Quiz 9_ Attempt review.pdf"
+    "salary": "1571",
+    "image": "jobuploads\\security guards.jpg",
+    "pdf": null
   }
 ]

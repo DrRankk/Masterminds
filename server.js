@@ -5,7 +5,6 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
-const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
@@ -33,8 +32,18 @@ app.use(express.static('assets'));
 app.set('view engine', 'ejs');
 app.use('/assets', express.static('assets'));
 
+app.use('/jobuploads', express.static(path.join(__dirname, 'jobuploads')));
 app.use(express.static('uploads'));
 app.use(express.static('node_modules'));
+
+// Authentication Middleware
+function isAuthenticated(req, res, next) {
+    if (req.session && req.session.user === adminUser.username) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 // Render Pages
 app.get('/', (req, res) => {
@@ -46,11 +55,11 @@ app.get('/aboutus', (req, res) => {
 app.get('/contact', (req, res) => {
     res.render("contact.ejs");
 });
-app.get('/courses', (req, res) => {
-    res.render("courses.ejs");
+app.get('/admin', isAuthenticated, (req, res) => {
+    res.render('admin.ejs');
 });
-app.get('/feesstructure', (req, res) => {
-    res.render("feesstructure.ejs");
+app.get('/jobs', (req, res) => {
+    res.render('jobs.ejs');
 });
 app.get('/register', (req, res) => {
     res.render("register.ejs");
@@ -70,8 +79,8 @@ app.get('/gallery', (req, res) => {
 app.get('/students', (req, res) => {
     res.render("students.ejs");
 });
-app.get('/activities', (req, res) => {
-    res.render("activities.ejs");
+app.get('/login', (req, res) => {
+    res.render("login.ejs");
 });
 app.get('/facilities', (req, res) => {
     res.render("facilities.ejs");
@@ -80,8 +89,8 @@ app.get('/agriculture', (req, res) => {
     res.render("agriculture.ejs");
 });
 
-// Set up multer storage for file uploads
-const storage = multer.diskStorage({
+// Set up multer storage for registration file uploads
+const storageRegistration = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/') // Folder where files will be stored
     },
@@ -90,10 +99,22 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage });
+const uploadRegistration = multer({ storage: storageRegistration });
+
+// Set up multer storage for job file uploads
+const storageJobs = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'jobuploads/') // Folder where job files will be stored
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname) // Keep original file name
+    }
+});
+
+const uploadJobs = multer({ storage: storageJobs });
 
 // Handle POST request for registration form
-app.post('/register', upload.fields([
+app.post('/register', uploadRegistration.fields([
     { name: 'admissionLetter', maxCount: 1 },
     { name: 'nationalID', maxCount: 1 },
     { name: 'kcseCertificate', maxCount: 1 },
@@ -184,7 +205,7 @@ app.post('/contactform', async (req, res) => {
             text: message
         };
 
-        transporter.sendMail(mailOptions, function(error, info) {
+        transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 console.log(error);
                 res.status(500).json({ error: 'Internal Server Error' });
@@ -199,7 +220,53 @@ app.post('/contactform', async (req, res) => {
     }
 });
 
-// Jobs and Admin
+// Admin protection
+const adminUser = {
+    username: 'admin',
+    password: 'Kacharas2024' // In a real application, use hashed passwords
+};
+
+// Middleware to protect admin routes
+function isAuthenticated(req, res, next) {
+    if (req.session && req.session.user === adminUser.username) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+// Route to display login form
+app.get('/login', (req, res) => {
+    res.render('login.ejs');
+});
+
+// Route to handle login form submission
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    if (username === adminUser.username && password === adminUser.password) {
+        req.session.user = adminUser.username;
+        res.redirect('/admin');
+    } else {
+        res.send('Invalid credentials');
+    }
+});
+
+// Route to handle logout
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).send('Unable to log out');
+        } else {
+            res.redirect('/');
+        }
+    });
+});
+
+// Protect admin routes
+app.get('/admin', isAuthenticated, (req, res) => {
+    res.render('admin.ejs');
+});
 
 // Load existing jobs from JSON file
 let jobs = [];
@@ -211,7 +278,7 @@ if (fs.existsSync(jobsFilePath)) {
 }
 
 // Route to add job
-app.post('/add-job', upload.fields([{ name: 'jobImage' }, { name: 'jobPDF' }]), (req, res) => {
+app.post('/add-job', isAuthenticated, uploadJobs.fields([{ name: 'jobImage' }, { name: 'jobPDF' }]), (req, res) => {
     const newJob = {
         id: Date.now(),
         title: req.body.jobTitle,
@@ -236,20 +303,11 @@ app.get('/get-jobs', (req, res) => {
 });
 
 // Route to delete job by ID
-app.delete('/delete-job/:id', (req, res) => {
+app.delete('/delete-job/:id', isAuthenticated, (req, res) => {
     const jobId = parseInt(req.params.id, 10);
     jobs = jobs.filter(job => job.id !== jobId);
     fs.writeFileSync(jobsFilePath, JSON.stringify(jobs, null, 2));
     res.send('Job listing deleted successfully!');
-});
-
-// Admin and Job pages
-app.get('/admin', (req, res) => {
-    res.render('admin.ejs');
-});
-
-app.get('/jobs', (req, res) => {
-    res.render('jobs.ejs');
 });
 
 // Start server

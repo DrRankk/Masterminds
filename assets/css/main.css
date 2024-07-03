@@ -1883,3 +1883,9 @@ section,
   font-size: 14px;
   vertical-align: middle;
 }
+
+/* jobs page */
+#portfolio {
+  min-height: 600px; /* Adjust as necessary */
+  padding-bottom: 50px; /* Ensures space below job listings */
+}
