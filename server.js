@@ -25,7 +25,8 @@ app.use(cookieParser());
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { secure: true } // Ensure secure is set to true in HTTPS environment
 }));
 
 app.use(express.static('assets'));
@@ -36,11 +37,13 @@ app.use('/jobuploads', express.static(path.join(__dirname, 'jobuploads')));
 app.use(express.static('uploads'));
 app.use(express.static('node_modules'));
 
-// Authentication Middleware
+// Middleware to protect admin routes
 function isAuthenticated(req, res, next) {
     if (req.session && req.session.user === adminUser.username) {
         return next();
     } else {
+        // Save the original requested URL for redirect after login
+        req.session.originalUrl = req.originalUrl;
         res.redirect('/login');
     }
 }
@@ -246,17 +249,24 @@ app.post('/login', (req, res) => {
 
     if (username === adminUser.username && password === adminUser.password) {
         req.session.user = adminUser.username;
-        res.redirect('/admin');
+        
+        // Redirect to original requested URL after login
+        const redirectTo = req.session.originalUrl || '/admin';
+        delete req.session.originalUrl;
+        
+        res.redirect(redirectTo);
     } else {
         res.send('Invalid credentials');
     }
 });
 
 // Route to handle logout
-app.get('/logout', (req, res) => {
+// Route to handle logout (both GET and POST)
+app.all('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
-            return res.status(500).send('Unable to log out');
+            console.error('Error destroying session:', err);
+            res.status(500).send('Unable to log out');
         } else {
             res.redirect('/');
         }
