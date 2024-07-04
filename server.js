@@ -25,8 +25,8 @@ app.use(cookieParser());
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true } // Ensure secure is set to true in HTTPS environment
+    saveUninitialized: true
+    
 }));
 
 app.use(express.static('assets'));
