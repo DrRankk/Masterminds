@@ -74,17 +74,36 @@
         margin: 10px 0;
       }
     }
+    .vh-100 {
+    height: 100vh;
+}
+
+.full-width-service {
+    width: 100%;
+    /* Optional: if you want the service item to take the full height of the screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    margin-top: 20px;
+}
+
   </style>
 
 </head>
 
-<body class="index-page">
+<body class="index-page" style="background-color: rgba(241, 229, 229, 0.865);">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
       
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+      <a href="/" class="logo d-flex align-items-center me-auto me-lg-0">
         
         <img src="assets/images/mptclogonobg.png" alt="">
         <!-- <h1 class="sitename"></h1>
@@ -100,7 +119,7 @@
                  
           <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#"> Recruitment</a></li>
+              <li><a href="jobs"> Recruitment</a></li>
               <!-- <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                   <li><a href="#">Deep Dropdown 1</a></li>
@@ -116,14 +135,14 @@
               <li><a href="#">Tours and holiday</a></li>
             </ul>
           </li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="contact">Contact</a></li>
           <li><a href="jobs">Portfolio</a></li>
           <!-- <li><a href="#team">Team</a></li> -->
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="admin">Get Started</a>
+      <a class="btn-getstarted" href="jobs">Get Started</a>
 
     </div>
   </header>
@@ -131,21 +150,75 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section">
+    
 
-      <img src="assets/images/hero-bg2.jpg" alt="" data-aos="fade-in">
+      <section id="hero" class="hero section">
 
-      <div class="container mt-5">
-        <div class="row justify-content-center">
-          <div class="col-12 medal-step-container">
-            <div class="medal-step">
-              <div class="tile tile-2">2</div>
-              <div class="tile tile-1">1</div>
-              <div class="tile tile-3">3</div>
+        <img src="assets/images/plane 1.jpg" alt="" data-aos="fade-in">
+  
+        <div class="container" style="margin-top: 0px;">
+  
+          <!-- <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-xl-6 col-lg-8">
+              <h2>About</h2>
+              <h2>MASTERMINDS</h2>
+              <p>Connecting Skill With Opportunity Globally</p>
+            </div>
+          </div> -->
+  
+          <div class="row gy-4 mt-5 justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="300" style="width: fit-content; min-height: 200px; max-width: 300px;">
+              <div class="icon-box" style="border: 0px; margin-top: auto;">
+                <h2>ABOUT</h2>
+                <h3 style="color: #205da5;font-size: 27px;">MASTERMINDS</h3>
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="400" style="width: fit-content; min-height: 300px;min-width: 200px; max-width: 400px;">
+              <div class="icon-box">
+                <!-- <i class="bi bi-card-list"></i> -->
+                <h3><a href="">Mission</a></h3>
+                <p style="font-size: 14px;">Help businesses grow by matching the right talent to their specialized
+                  staffing and consulting needs, and build rewarding careers for the
+                  professionals we place Adhere to a philosophy of “Ethics First” in
+                  everything we do Create a work environment where employees can
+                  thrive and innovate Be a socially responsible corporate citizen and an
+                  active participant in the communities in which we live and work</p>
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="500" style="width: fit-content; min-height: 300px; min-width: 200px; max-width: 400px;">
+              <div class="icon-box">
+                <!-- <i class="bi bi-airplane-engines-fill"></i> -->
+                <h3><a href="">Vision</a></h3>
+                <p style="font-size: 14px;">To be the best and most effective recruitment agency in East Africa that
+                  prioritizes on client's programme and deadline. This is attainable
+                  through focusing on building long-term relations with clients based on
+                  high standards, commitment to meet deadline of manpower supply
+                  and strong client focus</p>
+              </div>
+            </div>
+         
+            <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="100" style="width: fit-content; min-height: 300px;min-width: 200px;">
+              <div class="icon-box">
+                <!-- <i class="bi bi-phone"></i> -->
+                <h3><a href="aboutus">What We Do</a></h3>
+                <p style="font-size: 20px;">MASTERMINDS Placement & Travel Consultancy Limited (MPTC)
+                  was founded with the vision of catering to the recruitment needs of
+                  various Private & Government organizations in the Middle East, Europe,
+                  Canada, US & Australia.
+                  We not only offer recruitment solutions but also put forward exible
+                  plans for you. MPTC’s exible approach means you choose the required
+                  recruitment and HR services you need & the time of realization. We
+                  portray on a range of skills, leading-edge tools and recognized
+                  assessment techniques that are customized to meet your needs, to
+                  make certain that it always validates your recruitment decision. We
+                  work to your agenda and deadlines.</p>
+              </div>
             </div>
           </div>
+  
         </div>
-      </div>
+  
+      </section>
       
       
 
@@ -157,21 +230,78 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100" >
 
         <div class="row gy-4" >
-          <div class="col-lg-6 order-1 order-lg-2" style="border: 1px solid #00a5aa; padding: 10px;">
-            <img src="assets/images/plane 1.jpg" class="img-fluid" alt="" style="height: 100%;">
-          </div>
-          <div class="col-lg-6 order-2 order-lg-1 content" style="border: 1px solid #00a5aa; padding: 10px;">
-            <h3 style="font-size: 30px;">With The Best Not The Rest</h3>
-            <p class="fst-italic" style="font-size: 15px;">
-              At MPTC, we specialize in catering to the recruitment needs of various Private & Government organizations in the Middle East, Europe, Canada, US, and Australia and the needs of jobseekers. Our flexible approach ensures you receive the recruitment and HR services you need, tailored to your schedule and requirements.
+          <div class="col-lg-6 order-1 order-lg-2" style="border: 30px solid #00a5aa; padding: 10px;background-color: #f2f2f2;">
+            <!-- <img src="assets/images/plane 1.jpg" class="img-fluid" alt="" style="height: 100%;"> -->
+            <h3 style="font-size: 30px;">How We Do It</h3>
+            <p class="fst-italic" style="font-size: 15px; font-weight: bold;">
+              The best way to reduce the costly employee turnover is
+              to have a recruitment partner and program, which
+              ensures that new people t your business and that what
+              the business has to offer ts the people recruited. As it
+              requires special insight, skill and experience to hook the
+              best resources, it pays to use experts who will get you
+              the right people for the right job.
             </p>
-            <ul style="font-size: 15px;">
+             
+          </div>
+          <div class="col-lg-6 order-2 order-lg-1 content" style="border: 30px solid #00a5aa; padding: 10px;background-color: #f2f2f2;">
+            <h3 style="font-size: 30px;">How Can We Help?</h3>
+            <p class="fst-italic" style="font-size: 15px;">
+              We can help you attract, develop and retain quality staff across all
+              specializations from accounting, nancial services, human resources, legal
+              and office support, sales & marketing, technical & operations and IT. Our
+              specialist recruitment consultants have real-world experience in their area
+              of expertise and offer the benets of in-depth industry knowledge and
+              professional networks. 
+              
+            </p>
+            <!--<ul style="font-size: 15px;">
               <b><li><i class="bi bi-pin-fill"></i> <span>Comprehensive solutions for employers</span></li>
               <li><i class="bi bi-pin-fill"></i> <span>Adequate employment for jobseekers</span></li>
               <li><i class="bi bi-pin-fill"></i> <span>Excellent communications for both</span></li>
               <li><i class="bi bi-pin-fill"></i> <span>Good services and timely feedback</span></li></b>
             </ul>
-            <p>
+            <p> -->
+             
+            </p>
+          </div>
+        </div>
+        <div class="row gy-4" >
+          <div class="col-lg-6 order-1 order-lg-2" style="border: 30px solid #00a5aa; padding: 10px;background-color: #f2f2f2;">
+            <!-- <img src="assets/images/plane 1.jpg" class="img-fluid" alt="" style="height: 100%;"> -->
+            <h3 style="font-size: 30px;">Facts</h3>
+            <p class="fst-italic" style="font-size: 15px;font-weight: bold;">
+              The reality today is that companies need to take a long
+              and hard look at their recruitment principles, processes
+              and partners. We at MPTC have a wealth of industry
+              experience making us very knowledgeable and able to
+              advice our clients with specialist information to help
+              them achieve a documented, systematic hiring process
+              that ensures you hire the best possible staff and to make
+              certain that you have all the necessary information and
+              components in place to attract, retain and develop a
+              superior, high performance workforce.
+            </p>
+             
+          </div>
+          <div class="col-lg-6 order-2 order-lg-1 content" style="border: 30px solid #00a5aa; padding: 10px;background-color: #f2f2f2;">
+            <h3 style="font-size: 30px;">Quality</h3>
+            <p class="fst-italic" style="font-size: 15px;">
+              Our screening and shortlisting processes are focused on
+              retaining the very best candidates for our clients by
+              offering skill workshops and tests to hone their skills.
+              Our employer feedback program help us keep tabs on
+              our candidates' performance and take into
+              consideration their observations for future recruitment
+              drives.
+            </p>
+            <!--<ul style="font-size: 15px;">
+              <b><li><i class="bi bi-pin-fill"></i> <span>Comprehensive solutions for employers</span></li>
+              <li><i class="bi bi-pin-fill"></i> <span>Adequate employment for jobseekers</span></li>
+              <li><i class="bi bi-pin-fill"></i> <span>Excellent communications for both</span></li>
+              <li><i class="bi bi-pin-fill"></i> <span>Good services and timely feedback</span></li></b>
+            </ul>
+            <p> -->
              
             </p>
           </div>
@@ -182,13 +312,69 @@
     </section><!-- /About Section -->
 
      <!-- Features Section -->
-     <section id="features" class="features section">
+     <section id="features" class="features section" style="padding: 0px;">
 
       <div class="container" >
 
-        <div class="row gy-4" style="border: 4px solid #00a5aa; padding: 10px; background-image: url('assets/images/website pix_Page_4.jpg');">
-          <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="50"><img src="assets/images/conference 1.png" alt="" ></div>
-          <div class="col-lg-6" style="color: white;">
+        <div class="row gy-4" style="border: 0px solid #00a5aa; padding: 0px; background-image: url('assets/images/website pix_Pae_4.jpg');">
+          <div class="col-lg-6" style="color: white;border:2px solid #00a5aa;">
+
+            <div class="features-item d-flex ps-0 ps-lg-3 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="100" >
+              <div class="icon">
+                <i class="bi bi-cash-stack"></i>
+              </div>
+              <div>
+                <h4>Recruitment</h4>
+                <p>Connecting top talent with leading companies for mutual growth and success.</p>
+              </div>
+            </div><!-- End Features Item-->
+
+            <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="150">
+              <div class="icon">
+                <i class="bi bi-airplane-fill"></i>
+              </div>
+              <div>
+                <h4>Travel Consultancy</h4>
+                <p>Expert advice and personalized travel planning for unforgettable journeys.</p>
+              </div>
+            </div><!-- End Features Item-->
+
+            <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="200">
+               <div class="icon">
+                <i class="bi bi-person-workspace"></i>
+              </div>        
+
+              <div>
+                <h4>HR Consultancy</h4>
+                <p>Tailored HR solutions to optimize workforce efficiency and drive organizational excellence.</p>
+              </div>
+            </div><!-- End Features Item-->
+
+            <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="250">
+              <div class="icon">
+                <i class="bi bi-person-vcard-fill"></i>
+              </div>
+              <div>
+                <h4>Visa Application</h4>
+                <p>Hassle-free visa application assistance for seamless international travel.</p>
+              </div>
+            </div><!-- End Features Item-->
+
+            <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon">
+                <i class="bi bi-globe-europe-africa"></i>
+                
+              </div>
+              <div>
+                <h4>Tours & Holiday</h4>
+                <p>Curated tours and holiday packages for unique and memorable travel experiences.</p>
+              </div>
+            </div><!-- End Features Item-->
+
+
+          </div>
+          <!-- <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="50"><img src="assets/images/recruitment 1.png" alt="" ></div> -->
+          <div class="col-lg-6" style="color: white;border:2px solid #205da5;">
 
             <div class="features-item d-flex ps-0 ps-lg-3 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="100" >
               <i class="flex-shrink-0"><img src="assets/images/11.1.png" alt="Icon description" style="width:50px; height: 50px;">
@@ -346,14 +532,89 @@
       </div>
 
     </section><!-- /Clients Section -->
-    <section id="call-to-action" class="call-to-action section">
+    <section id="clients" class="clients section" style="padding: 10px;">
 
-      <img src="assets/images/MPTC_Logos_REVERSE_2_extracted.jpg" alt="">
+      <div class="container" data-aos="fade-up" data-aos-delay="60">
+
+        <div class="swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="assets/images/c1.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c3.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c4.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c5.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c6.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c7.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c8.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c9.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c10.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c11.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c12.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c13.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c14.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c15.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c16.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c17.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c18.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c19.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c20.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c21.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c22.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c23.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c24.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/images/c25.png" class="img-fluid" alt=""></div>
+                     
+            
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Clients Section -->
+    <section id="call-to-action" class="call-to-action section">
+      
+
+      
 
       <div class="container">
         <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="60">
-          <div class="col-xl-10">
-            <img src="assets/images/logoinverse.png">
+          <div class="col-xl-10" style="height: 6px;">
+            
+            
           </div>
         </div>
       </div>
@@ -366,90 +627,168 @@
     <section id="services" class="services section">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title" data-aos="fade-up" style="padding: 10px;">
         <h2>Services</h2>
-        <p>Our Services</p>
+        
+        <p>The Recruitment Process</p>
+        <span></span>
       </div><!-- End Section Title -->
 
       <div class="container">
+        <h2 style="font-size: 14px;">
+          Our services are designed to ensure that each step of
+          the recruitment chain is carefully coordinated and
+          managed. Our Staff is professionally equipped,
+          committed and dedicated to ensure that the process
+          meets our client's requirements.</h2>
+          
+
+          
+          <h3>First To Our Clients</h3>
+          <p style="font-size: 14px;border-bottom:1px #205da5;">We are committed to your success. With
+            commitment, creativity and courage, we are
+            dedicated to deliver positive results in your
+            organization, which means you will get the
+            optimum solutions to all your requirements
+            challenges. Everyone at MPTC is passionate about
+            helping you successfully navigate, manage and
+            develop everything related to the people side of
+            your business.</p>
+        
 
         <div class="row gy-4">
-
+          
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="60">
-            <div class="service-item position-relative" style="background-image: url('assets/images/recruitment 1.png');">
-              <div class="icon">
-                <i class="bi bi-cash-stack"></i>
-              </div>
+            <div class="service-item position-relative" style="background-image: url('assets/images/travelconsultancy 1.png');">
+             
               <a href="service-details.html" class="stretched-link">
-                <h3>Recruitment</h3>
+                <h3>SOURCING & ADVERTISING</h3>
               </a>
-              <p>We specialize in matching the right talent to the specific staffing needs of various Private & Government organizations across the Middle East, Europe, Canada, US, and Australia. Our expert consultants use industry knowledge and professional networks to ensure you find the perfect fit for your team.</p>
+              <p>Once We receive an offer and the our clients
+                requirement, we apply with the department of
+                labor of the candidates country for authorization.
+                Once the DOL grants the approval and are satised
+                with the credibility of the demand letter and
+                attesting that the terms and conditions offered are
+                in line with the government rules and regulations,
+                our search begins. Our Searches are based on our
+                database and advertising campaigns in the leading
+                Broadcast and print Media.
+                </p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative" style="background-image: url('assets/images/airport 1.png');">
-              <div class="icon">
-                <i class="bi bi-airplane-fill"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Travel Consultancy</h3>
+            <div class="service-item position-relative" style="background-image: url('assets/images/recruitment 1.png');">
+              
+              <a href="jobs" class="stretched-link">
+                <h3>SELECTION</h3>
               </a>
-              <p>Whether for business, work or relocation, our travel consultancy services ensure a smooth journey. We handle all travel arrangements, from flights to accommodations, ensuring that your travel experience is comfortable, cost-effective, and well-coordinated.</p>
+              <p>We plan and conduct search and select for the mass
+                recruitments projects aimed in medium and
+                technical personnel. Through the search we obtain
+                candidates with high, professional qualications and
+                experience in a particular industry. Knowledge of our
+                consultants and high standards of ethical business
+                practice carried out under the search are capable of
+                delivering high efficacy in the recruit- ment of a wide
+                range of professions.</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative" style="background-image: url('assets/images/hrconsultancy 1.png');">
-              <div class="icon">
-                <i class="bi bi-person-workplace"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>HR Consultancy</h3>
-              </a>
-              <p>Our HR consultancy services help businesses optimize their human resources processes. From employee engagement to compliance and performance management, we provide tailored solutions that enhance your HR strategies and contribute to your overall business success.</p>
+            <div class="service-item position-relative" style="background-image: url('assets/images/assessment 1.png');">
+              
+              
+                <h3>ASSESSMENT CENTER</h3>
+             
+              <p>Masterminds leads candidates through practical
+                exercise, which are directly related to the duties and
+                responsibilities that the employee would perform in
+                the vacant position. This preparations allow a deeper
+                assessment of the true practical knowledge of
+                postulants, to examine areas of competence that are
+                must haves for the effective implementation of the
+                appropriate tasks. And which also identify areas for
+                positive development. In addition the Assessment
+                center gives candidates a chance to get closer insight
+                into the specic job offer.</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
-            <div class="service-item position-relative" style="background-image: url('assets/images/city 1.png');">
-              <div class="icon">
-                <i class="bi bi-globe-europe-africa"></i>
-                
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Tours and Holiday</h3>
-              </a>
-              <p>Our tours and holidays services offer curated travel experiences for leisure and relaxation. Whether you're seeking adventure, culture, or a peaceful getaway, we provide customized holiday packages that create lasting memories and enjoyable escapes.</p>
-              <a href="service-details.html" class="stretched-link"></a>
+            <div class="service-item position-relative" style="background-image: url('assets/images/hrconsultancy 1.png');">
+              
+             
+                <h3>SKILL TESTS</h3>
+              
+              <p>Depending on the requirement of the work place,
+                Masterminds Conducts tests to assess the
+                knowledge and professional skills of the candidates.
+                These are developed or modied in consultation
+                with the employer's specic expectations of the
+                position, with substantive support from specialists
+                in the eld.</p>
+              <!-- <a href="service-details.html" class="stretched-link"></a> -->
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative" style="background-image: url('assets/images/visaapplication 2.jpg');">
-              <div class="icon">
-                <i class="bi bi-person-vcard-fill"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Visa Application</h3>
+            <div class="service-item position-relative" style="background-image: url('assets/images/medical 1.png');">
+              
+              <a >
+                <h3>MEDICAL CHECK UP</h3>
               </a>
-              <p>Our visa services simplify the process of securing work visas, ensuring compliance with all necessary regulations for smooth international transitions.</p>
-              <a href="service-details.html" class="stretched-link"></a>
+              <p>Only selected candidates are sent to an authorized
+                hospital of clinic for a full medical examination. The
+                candidates who are t medically and physically for
+                employment are eligible to sign the employment
+                contract.</p>
+              <!-- <a href="service-details.html" class="stretched-link"></a> -->
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
-            <div class="service-item position-relative" style="background-image: url('assets/images/construction 1.png');">
-              <div class="icon">
-                <i class="bi bi-chat-square-text"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Job Advertisement</h3>
-              </a>
-              <p>Enhance your recruitment efforts with our comprehensive job advertisement services. We help you reach the right candidates by strategically placing your job openings across multiple platforms and media channels.</p>
-              <a href="service-details.html" class="stretched-link"></a>
+            <div class="service-item position-relative" style="background-image: url('assets/images/conference 1.png');">
+              
+              <!-- <a href="service-details.html" class="stretched-link"> -->
+                <h3>ORIENTATION</h3>
+              <!-- </a> -->
+              <p>After receiving the employment visa and the job
+                offer letter. All candidates are invited for a brief to
+                make them aware of the employers requirements,
+                the country's laws and orders, labor laws and
+                Immigration policy. The orientation takes special
+                care in brieng the selected candidates on how to
+                maintain a cordial relationship between the
+                employee and the employer and motivate them to
+                their duties in a professional manner.</p>
+              <!-- <a href="service-details.html" class="stretched-link"></a> -->
             </div>
           </div><!-- End Service Item -->
+
+          <div class="container-fluid d-flex justify-content-center align-items-center">
+            <div class="row w-100 d-flex justify-content-center">
+                <div class="col-12" data-aos="fade-up" data-aos-delay="150">
+                    <div class="service-item position-relative full-width-service" style="background-image: url('assets/images/airport 1.png');">
+                        <a href="service-details.html" class="stretched-link">
+                            <h3>DEPLOYMENT</h3>
+                        </a>
+                        <p>In all cases we send all the visa endorsement,
+                            passport copies to the concerned airlines, to confirm
+                            the travel schedule for the candidates. We also
+                            confirm the candidate's location to the nearest
+                            airport of the working country.
+                            PTA may be sent to the Airline.
+                        </p>
+                        <!-- <a href="service-details.html" class="stretched-link"></a> -->
+                    </div>
+                </div><!-- End Service Item -->
+            </div>
+        </div>
+        
+        
+
 
         </div>
 
@@ -468,7 +807,7 @@
             <div class="text-center">
               <h3>Get Started</h3>
               <p>Begin your journey with us today. Whether you're an employer seeking top talent or a jobseeker looking for the perfect opportunity, MPTC is here to help you every step of the way.</p>
-              <a class="cta-btn" href="#">Get Started</a>
+              <a class="cta-btn" href="jobs">Get Started</a>
             </div>
           </div>
         </div>
@@ -573,7 +912,7 @@
                 <div class="stats-item d-flex">
                   <i class="bi bi-emoji-smile flex-shrink-0"></i>
                   <div>
-                    <span data-purecounter-start="0" data-purecounter-end="5000" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="2000" data-purecounter-duration="1" class="purecounter"></span>
                     <p><strong>Happy Clients</strong> <span> that have traveled with us</span></p>
                   </div>
                 </div>
@@ -583,7 +922,7 @@
                 <div class="stats-item d-flex">
                   <i class="bi bi-journal-richtext flex-shrink-0"></i>
                   <div>
-                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="81" data-purecounter-duration="1" class="purecounter"></span>
                     <p><strong>Companies</strong> <span>have reached to us seeking manpower</span></p>
                   </div>
                 </div>
@@ -603,7 +942,7 @@
                 <div class="stats-item d-flex">
                   <i class="bi bi-people flex-shrink-0"></i>
                   <div>
-                    <span data-purecounter-start="0" data-purecounter-end="30" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
                     <p><strong>Certificates and Awards</strong> <span>to verify our achievements</span></p>
                   </div>
                 </div>
@@ -842,7 +1181,7 @@
         <div class="row gy-4">
 
           <div class="col-lg-4">
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="150">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="100">
               <i class="bi bi-geo-alt flex-shrink-0"></i>
               <div>
                 <h3>Address</h3>
@@ -852,7 +1191,7 @@
               </div>
             </div><!-- End Info Item -->
 
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="150">
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
@@ -860,7 +1199,7 @@
               </div>
             </div><!-- End Info Item -->
 
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="250">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
@@ -871,7 +1210,7 @@
           </div>
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="60">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -949,7 +1288,7 @@
           <div class="col-lg-2 col-md-3 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Recruitment</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="jobs"> Recruitment</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#"> Visa Application</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#"> Travel Consultancy</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#"> HR Consultancy</a></li>

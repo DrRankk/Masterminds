@@ -1101,7 +1101,7 @@ section,
 
 .call-to-action:before {
   content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 50%);
+  background-color:rgba(32, 93, 165, 0.8);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -1889,3 +1889,6 @@ section,
   min-height: 600px; /* Adjust as necessary */
   padding-bottom: 50px; /* Ensures space below job listings */
 }
+
+
+/*tile*/

@@ -26,7 +26,6 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true
-    
 }));
 
 app.use(express.static('assets'));
@@ -37,13 +36,11 @@ app.use('/jobuploads', express.static(path.join(__dirname, 'jobuploads')));
 app.use(express.static('uploads'));
 app.use(express.static('node_modules'));
 
-// Middleware to protect admin routes
+// Authentication Middleware
 function isAuthenticated(req, res, next) {
     if (req.session && req.session.user === adminUser.username) {
         return next();
     } else {
-        // Save the original requested URL for redirect after login
-        req.session.originalUrl = req.originalUrl;
         res.redirect('/login');
     }
 }
@@ -249,24 +246,17 @@ app.post('/login', (req, res) => {
 
     if (username === adminUser.username && password === adminUser.password) {
         req.session.user = adminUser.username;
-        
-        // Redirect to original requested URL after login
-        const redirectTo = req.session.originalUrl || '/admin';
-        delete req.session.originalUrl;
-        
-        res.redirect(redirectTo);
+        res.redirect('/admin');
     } else {
         res.send('Invalid credentials');
     }
 });
 
 // Route to handle logout
-// Route to handle logout (both GET and POST)
-app.all('/logout', (req, res) => {
+app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
-            console.error('Error destroying session:', err);
-            res.status(500).send('Unable to log out');
+            return res.status(500).send('Unable to log out');
         } else {
             res.redirect('/');
         }

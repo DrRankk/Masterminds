@@ -1,21 +1,10 @@
 [
   {
-    "id": 1720001334639,
+    "id": 1720018992977,
     "title": "Security Guards",
     "category": "admin",
     "description": "Male Security Guards",
-    "requirements": "- Age 22-36yrs\r\n-Height 5'8\" +\r\n-Valid Passport, PCC, Covid Cert\r\n-Original KCSE Cert\r\n-Proof of Security Experience (2yrs min)\r\n-Medically, Mentally, Physically fit\r\n-Good English",
-    "location": "Qatar",
-    "salary": "1571",
-    "image": "jobuploads\\security guards.jpg",
-    "pdf": null
-  },
-  {
-    "id": 1720004644906,
-    "title": "Security Guards",
-    "category": "admin",
-    "description": "- Age 22-36yrs\r\n-Height 5'8\" +\r\n",
-    "requirements": "- Age 22-36yrs\r\n-Height 5'8\" +\r\n",
+    "requirements": "Age 22",
     "location": "Qatar",
     "salary": "1571",
     "image": "jobuploads\\Male security guards.jpg",
