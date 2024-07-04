@@ -32,7 +32,8 @@ app.use(express.static('assets'));
 app.set('view engine', 'ejs');
 app.use('/assets', express.static('assets'));
 
-app.use('/jobuploads', express.static(path.join(__dirname, 'jobuploads')));
+app.use(express.static(path.join(__dirname, 'jobuploads')));
+
 app.use(express.static('uploads'));
 app.use(express.static('node_modules'));
 
@@ -104,7 +105,7 @@ const uploadRegistration = multer({ storage: storageRegistration });
 // Set up multer storage for job file uploads
 const storageJobs = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'jobuploads/') // Folder where job files will be stored
+        cb(null, 'assets/jobuploads/') // Folder where job files will be stored
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname) // Keep original file name
@@ -220,10 +221,10 @@ app.post('/contactform', async (req, res) => {
     }
 });
 
-// Admin protection
+
 const adminUser = {
     username: 'admin',
-    password: 'Kacharas2024' // In a real application, use hashed passwords
+    password: 'Kacharas2024'
 };
 
 // Middleware to protect admin routes
@@ -235,7 +236,7 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-// Route to display login form
+
 app.get('/login', (req, res) => {
     res.render('login.ejs');
 });
