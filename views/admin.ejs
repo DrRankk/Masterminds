@@ -162,7 +162,6 @@ button:hover {
   </header>
 
   <main class="main">
-
     <!-- Hero Section -->      
     <div class="container1">
         <h1>Add Job Listing</h1>
@@ -176,11 +175,11 @@ button:hover {
                 <option value="hr">Human Resources</option>
                 <option value="it">Information Technology</option>
                 <option value="sales">Sales & Marketing</option>
-                <option value="admin">Security</option>
-                <option value="hr">Construction</option>
-                <option value="it">Cleaner</option>                
-                <option value="sales">Driver</option>
-                <option value="admin">Other</option>
+                <option value="security">Security</option>
+                <option value="construction">Construction</option>
+                <option value="cleaner">Cleaner</option>                
+                <option value="driver">Driver</option>
+                <option value="other">Other</option>
                 <!-- Add more categories as needed -->
             </select>
             
@@ -225,7 +224,7 @@ button:hover {
                             <p>Location: ${job.location}</p>
                             <p>Salary: $${job.salary}</p>
                             ${job.pdf ? `<a href="${job.pdf}" target="_blank">View PDF</a>` : ''}
-                            <button onclick="deleteJob(${job.id})">Delete</button>
+                            <button onclick="deleteJob('${job._id}')">Delete</button>
                         `;
                         adminJobsContainer.appendChild(jobDiv);
                     });
@@ -241,12 +240,8 @@ button:hover {
                 });
         }
     </script>
+</main>
 
-
-  
-   
-
-  </main>
 
   <footer id="footer" class="footer">
 
