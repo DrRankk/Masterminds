@@ -40,6 +40,8 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static(uploadsDir));
 app.use(express.static('assets'));
 app.use('/assets', express.static('assets'));
+app.use(express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 app.use(express.static('public'));
 
 // Session configuration
