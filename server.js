@@ -9,10 +9,10 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 10000;
 
-// Ensure the assets/uploads directory exists
-const uploadsDir = path.join(__dirname, 'assets/uploads');
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
+// Ensure the assets directory exists
+const assetsDir = path.join(__dirname, 'assets');
+if (!fs.existsSync(assetsDir)) {
+    fs.mkdirSync(assetsDir, { recursive: true });
 }
 
 // MongoDB connection
@@ -37,9 +37,8 @@ const Job = mongoose.model('Job', jobSchema);
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/assets/uploads', express.static(uploadsDir));
+app.use('/assets', express.static(assetsDir));
 app.use(express.static('assets'));
-app.use('/assets', express.static('assets'));
 app.use(express.static('public'));
 
 // Session configuration
@@ -61,7 +60,7 @@ function authenticate(req, res, next) {
 // Configure multer for file uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'assets/uploads/');
+        cb(null, 'assets/');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
