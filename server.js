@@ -3,9 +3,17 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const bodyParser = require('body-parser');
 const path = require('path');
+const session = require('express-session');
+const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 10000;
+
+// Ensure the uploads directory exists
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
 // MongoDB connection
 mongoose.connect('mongodb+srv://Francis:Masterminds@masterminds.f4pkbdp.mongodb.net/?retryWrites=true&w=majority&appName=Masterminds', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -29,10 +37,26 @@ const Job = mongoose.model('Job', jobSchema);
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(uploadsDir));
 app.use(express.static('assets'));
 app.use('/assets', express.static('assets'));
 app.use(express.static('public'));
+
+// Session configuration
+app.use(session({
+    secret: 'your_secret_key_here', // Replace with a strong secret
+    resave: false,
+    saveUninitialized: false
+}));
+
+// Authentication middleware
+function authenticate(req, res, next) {
+    if (req.session.authenticated) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -59,12 +83,17 @@ app.get('/contact', (req, res) => {
     res.render("contact.ejs");
 });
 
-app.get('/admin', (req, res) => {
+app.get('/admin', authenticate, (req, res) => {
     res.render('admin.ejs');
 });
 
-app.get('/jobs', (req, res) => {
-    res.render('jobs.ejs');
+app.get('/jobs', async (req, res) => {
+    try {
+        const jobs = await Job.find();
+        res.render('jobs.ejs', { jobs });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });
 
 app.get('/portfolio', (req, res) => {
@@ -73,6 +102,25 @@ app.get('/portfolio', (req, res) => {
 
 app.get('/login', (req, res) => {
     res.render('login.ejs');
+});
+
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    if (username === 'admin' && password === 'Kacharas2024') {
+        req.session.authenticated = true;
+        res.redirect('/admin');
+    } else {
+        res.render('login.ejs', { error: 'Invalid username or password' });
+    }
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Error destroying session:', err);
+        }
+        res.redirect('/login');
+    });
 });
 
 app.post('/add-job', upload.fields([{ name: 'jobImage', maxCount: 1 }, { name: 'jobPDF', maxCount: 1 }]), async (req, res) => {
@@ -93,8 +141,10 @@ app.post('/add-job', upload.fields([{ name: 'jobImage', maxCount: 1 }, { name: '
 
     try {
         await newJob.save();
+        console.log(`Job saved: ${JSON.stringify(newJob)}`); // Log the saved job details
         res.redirect('/admin');
     } catch (err) {
+        console.error('Error saving job:', err);
         res.status(500).send(err.message);
     }
 });
@@ -110,7 +160,7 @@ app.get('/get-jobs', async (req, res) => {
 
 app.delete('/delete-job/:id', async (req, res) => {
     const jobId = req.params.id;
-    console.log(`Received job ID for deletion: ${jobId}`);  // Log the received job ID
+    console.log(`Received job ID for deletion: ${jobId}`);
 
     if (!mongoose.Types.ObjectId.isValid(jobId)) {
         return res.status(400).send('Invalid job ID');
