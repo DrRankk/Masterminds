@@ -9,7 +9,7 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 10000;
 
-// Ensure the uploads directory exists within the assets directory
+// Ensure the assets/uploads directory exists
 const uploadsDir = path.join(__dirname, 'assets/uploads');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
@@ -142,7 +142,7 @@ app.post('/add-job', upload.fields([{ name: 'jobImage', maxCount: 1 }, { name: '
     try {
         await newJob.save();
         console.log(`Job saved: ${JSON.stringify(newJob)}`); // Log the saved job details
-        res.redirect('/admin');
+        res.render('admin.ejs', { successMessage: 'Job added successfully!' });
     } catch (err) {
         console.error('Error saving job:', err);
         res.status(500).send(err.message);
