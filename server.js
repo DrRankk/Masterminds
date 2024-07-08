@@ -9,8 +9,8 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 10000;
 
-// Ensure the uploads directory exists
-const uploadsDir = path.join(__dirname, 'uploads');
+// Ensure the uploads directory exists within the assets directory
+const uploadsDir = path.join(__dirname, 'assets/uploads');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -37,11 +37,9 @@ const Job = mongoose.model('Job', jobSchema);
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/uploads', express.static(uploadsDir));
+app.use('/assets/uploads', express.static(uploadsDir));
 app.use(express.static('assets'));
 app.use('/assets', express.static('assets'));
-app.use(express.static('uploads'));
-app.use('/uploads', express.static('uploads'));
 app.use(express.static('public'));
 
 // Session configuration
@@ -63,7 +61,7 @@ function authenticate(req, res, next) {
 // Configure multer for file uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/');
+        cb(null, 'assets/uploads/');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
