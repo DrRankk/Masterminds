@@ -26,6 +26,53 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+   .job-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-title h4 {
+  margin: 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+.portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 300px; /* Adjust the height as needed */
+}
+
+.portfolio-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+
+  </style>
 
 </head>
 
@@ -85,72 +132,79 @@
 
     <section>
       <div class="container">         
-  
-          <!-- Portfolio Section -->
-          <section id="portfolio" class="portfolio section">
-              <!-- Section Title -->
-              <div class="container section-title" data-aos="fade-up">
-                  <h1><b>JOBS</b></h1>
-                  <p style="font-size: 14px;font-weight: 200px;text-transform: none;">Current Job Listings</p>
-              </div><!-- End Section Title -->
-          
-              <div class="container">           
-                  <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-                      <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                          <li data-filter="*" class="filter-active">All</li>
-                          <li data-filter=".filter-app">Cleaners</li>
-                          <li data-filter=".filter-product">Security</li>
-                          <li data-filter=".filter-branding">Others</li>
-                      </ul><!-- End Portfolio Filters -->
-          
-                      <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200" id="jobsContainer">
-                          <!-- Job listings will be dynamically inserted here -->
-                      </div><!-- End Portfolio Container -->
-                  </div>
-              </div>
-          </section>
-  
-          <script>
-              document.addEventListener('DOMContentLoaded', () => {
-                  fetch('/get-jobs')
-                      .then(response => response.json())
-                      .then(data => {
-                          const jobsContainer = document.getElementById('jobsContainer');
-                          data.forEach(job => {
-                              const jobDiv = document.createElement('div');
-                              jobDiv.classList.add('col-lg-4', 'col-md-6', 'portfolio-item', 'isotope-item', 'filter-app');
-                              jobDiv.innerHTML = `
-                                  <div class="portfolio-wrap">
-                                      <img src="${job.image}" class="img-fluid" alt="${job.title}">
-                                      <div class="portfolio-info">
-                                          <h4>${job.title}</h4>
-                                          <p>${job.description}</p>
-                                          <p>Requirements: ${job.requirements}</p>
-                                          <p>Location: ${job.location}</p>
-                                          <p>Salary: $${job.salary}</p>
-                                          <a href="${job.image}" title="${job.description}" data-gallery="portfolio-gallery-app" class="glightbox preview-link">
-                                              <i class="bi bi-zoom-in"></i>
-                                          </a>
-                                          ${job.pdf ? `<a href="${job.pdf}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>` : ''}
-                                      </div>
-                                  </div>
-                              `;
-                              jobsContainer.appendChild(jobDiv);
-                          });
-                      });
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio section">
+          <!-- Section Title -->
+          <div class="container section-title" data-aos="fade-up">
+            <h1><b>JOBS</b></h1>
+            <p style="font-size: 14px;font-weight: 200px;text-transform: none;">Current Job Listings</p>
+          </div><!-- End Section Title -->
+    
+          <div class="container">           
+            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+              <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+                <li data-filter="*" class="filter-active">All</li>
+                <li data-filter=".filter-app">Cleaners</li>
+                <li data-filter=".filter-product">Security</li>
+                <li data-filter=".filter-branding">Others</li>
+              </ul><!-- End Portfolio Filters -->
+    
+              <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200" id="jobsContainer">
+                <!-- Job listings will be dynamically inserted here -->
+              </div><!-- End Portfolio Container -->
+            </div>
+          </div>
+        </section>
+    
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            fetch('/get-jobs')
+              .then(response => response.json())
+              .then(data => {
+                const jobsContainer = document.getElementById('jobsContainer');
+                data.forEach(job => {
+                  const jobDiv = document.createElement('div');
+                  jobDiv.classList.add('col-lg-4', 'col-md-6', 'portfolio-item', 'isotope-item', 'filter-app');
+                  jobDiv.innerHTML = `
+                    <div class="portfolio-wrap">
+                      <img src="${job.image}" class="img-fluid" alt="${job.title}">
+                      <div class="portfolio-info">
+                        <div class="job-title">
+                          <h4>${job.title}</h4>
+                          <a href="/job/${job._id}" class="btn btn-primary">Apply</a>
+                        </div>
+                        <p>${job.description}</p>
+                        <p>Requirements: ${job.requirements}</p>
+                        <p>Location: ${job.location}</p>
+                        <p>Salary: $${job.salary}</p>
+                        <a href="${job.image}" title="${job.description}" data-gallery="portfolio-gallery-app" class="glightbox preview-link">
+                          <i class="bi bi-zoom-in"></i>
+                        </a>
+                        ${job.pdf ? `<a href="${job.pdf}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>` : ''}
+                      </div>
+                    </div>
+                  `;
+                  jobsContainer.appendChild(jobDiv);
+                });
               });
-          </script>
-  
-          <!-- Initialize Lightbox -->
-          <script src="https://cdn.jsdelivr.net/npm/lightbox2/dist/js/lightbox.min.js"></script>
-          <script>
-              lightbox.option({
-                  'resizeDuration': 200,
-                  'wrapAround': true
-              });
-          </script>
+          });
+        </script>
+    
+        <!-- Initialize Lightbox -->
+        <script src="https://cdn.jsdelivr.net/npm/lightbox2/dist/js/lightbox.min.js"></script>
+        <script>
+          lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+          });
+        </script>
       </div>
-  </section>
+    </section>
+    
+    
+    
+    
+    
     
     
     <!-- /Portfolio Section -->
