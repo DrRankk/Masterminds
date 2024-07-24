@@ -43,10 +43,15 @@ app.use(express.static('assets'));
 app.use(express.static('public'));
 
 
+const MongoStore = require('connect-mongo');
 app.use(session({
-    secret: 'Kacharas2024', 
+    secret: 'Kacharas2024',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: 'mongodb+srv://Francis:Masterminds@masterminds.f4pkbdp.mongodb.net/?retryWrites=true&w=majority&appName=Masterminds',
+        ttl: 14 * 24 * 60 * 60 // 14 days expiration
+    })
 }));
 
 function authenticate(req, res, next) {
